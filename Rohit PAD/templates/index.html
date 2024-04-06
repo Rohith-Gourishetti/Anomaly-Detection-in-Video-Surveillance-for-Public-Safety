@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Mask Detection</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0px 30px;
+            width: 100%;
+            background-image: url('{{ url_for("static", filename="fcmk.webp") }}');
+            background-size: cover;
+        }
+
+        #pro h3 {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 10s linear infinite;
+            padding-bottom: 20px;
+        }
+
+        #pro h1 {
+            padding-bottom: 30px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .roh {
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .rohi {
+            flex-direction: column;
+            margin: 15px;
+            padding: 30px;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        #pro marquee {
+            padding-bottom: 20px;
+            padding-top: 0;
+            color: rgb(171, 154, 84);
+        }
+
+        .obj,
+        .tsk {
+            padding-left: 40px;
+        }
+
+        .obj div {
+            padding: 15px 15px;
+        }
+
+        .tsk div {
+            padding: 15px 15px;
+        }
+
+        .tsk p {
+            padding: 15px 30px;
+        }
+
+        .nec {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nec button {
+            width: 70px;
+            height: 30px;
+        }
+
+        .logi {
+            margin-left: 35%;
+            margin-top: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            height: 50%;
+            padding: 20px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .logi input,
+        button {
+            margin-top: 20px;
+        }
+
+        .frame {
+            width: 100%;
+            justify-content: space-evenly;
+            height: 100vh;
+            align-items: center;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+        }
+
+        .frame1,
+        .frame2 {
+            width: 30%;
+            flex-direction: column;
+            margin: 15px;
+            padding: 30px;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+        }
+
+        .dete,
+        .dete1 {
+            display: none;
+            height: 90vh;
+            margin: 20px;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rohi" style="display: none;">
+        <div id="pro">
+            <h3>Welcome to Face and Mask Detector</h3>
+            <h1 class="roh">Project: Face Mask Detection using CV</h1>
+        </div>
+        <div class="obj">
+            <h3>Face Detection:</h3>
+            <div>
+                <li>Real-time Processing-Implement efficient algorithms for real-time face detection in live web cam.
+                </li>
+                <li>Multiple Face Detection-Extend face detection capabilities to handle scenarios with multiple faces
+                    in the frame.</li>
+            </div>
+        </div>
+        <div class="obj">
+            <h3>Face Mask Detection:</h3>
+            <div>
+                <li>Real-time Mask Detection-Implement real-time processing for detecting the presence or absence of
+                    face masks.</li>
+                <li>Alerting System- Integrate an alerting mechanism(suggestions)to notify relevant parties when
+                    individuals are detected without masks.</li>
+            </div>
+        </div>
+        <div class="tsk">
+            <h3>Tasks:</h3>
+            <div>
+                <li>Task-1</li>
+                <p>Real time face detection</p>
+                <li>Task-2</li>
+                <p>Real time Face mask detection (masked/unmasked)</p>
+                <li>Task-3</li>
+                <p>Providing percentage of mask covered on face</p>
+            </div>
+        </div>
+        <div class="nec">
+            <button onclick="next()">Next</button>
+        </div>
+    </div>
+    <div class="logi">
+        <h1>Login</h1>
+        <input type="email" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div class="frame">
+        <div class="frame1">
+            <h2>Face Mask Detection</h2>
+            <button id="detect1" onclick="face()">Detect</button>
+        </div>
+        <div class="frame2">
+            <h2>Face Detection</h2>
+            <button id="detect2" onclick="face1()">Detect</button>
+        </div>
+    </div>
+    <div class="dete">
+        <h1>Real-time Face Mask Detection</h1>
+        <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function login() {
+            var log = document.querySelector('.logi')
+            var hom = document.querySelector('.rohi')
+            var nex = document.querySelector('.frame')
+            var det = document.querySelector('.dete')
+            hom.style.display = 'flex';
+            log.style.display = 'none';
+            nex.style.display = 'none';
+            det.style.display = 'none';
+        }
+
+        function next() {
+            var log = document.querySelector('.logi')
+            var hom = document.querySelector('.rohi')
+            var nex = document.querySelector('.frame')
+            var det = document.querySelector('.dete')
+            hom.style.display = 'none';
+            log.style.display = 'none';
+            nex.style.display = 'flex';
+            det.style.display = 'none';
+        }
+
+        function face() {
+            var log = document.querySelector('.logi')
+            var hom = document.querySelector('.rohi')
+            var nex = document.querySelector('.frame')
+            var det = document.querySelector('.dete')
+            hom.style.display = 'none';
+            log.style.display = 'none';
+            nex.style.display = 'none';
+            det.style.display = 'flex';
+        }
+
+        function face1() {
+            window.location.href="/new"
+        }
+    </script>
+</body>
+
+</html>

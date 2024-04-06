@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection with Flask</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0px 30px;
+            width: 100%;
+            background-image: url('{{url_for("static",filename="fcmk.webp_")}}');
+            background-size: cover;
+        }
+
+        #pro h3 {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 10s linear infinite;
+            padding-bottom: 20px;
+        }
+
+        #pro h1 {
+            padding-bottom: 30px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .roh {
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .rohi {
+            flex-direction: column;
+            margin: 15px;
+            padding: 30px;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        #pro marquee {
+            padding-bottom: 20px;
+            padding-top: 0;
+            color: rgb(171, 154, 84);
+        }
+
+        .obj,
+        .tsk {
+            padding-left: 40px;
+        }
+
+        .obj div {
+            padding: 15px 15px;
+        }
+
+        .tsk div {
+            padding: 15px 15px;
+        }
+
+        .tsk p {
+            padding: 15px 30px;
+        }
+
+        .nec {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nec button {
+            width: 70px;
+            height: 30px;
+        }
+
+        .logi {
+            margin-left: 35%;
+            margin-top: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            height: 50%;
+            padding: 20px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .logi input,
+        button {
+            margin-top: 20px;
+        }
+
+        .frame {
+            width: 100%;
+            justify-content: space-evenly;
+            height: 100vh;
+            align-items: center;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+        }
+
+        .frame1,
+        .frame2 {
+            width: 30%;
+            flex-direction: column;
+            margin: 15px;
+            padding: 30px;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+        }
+
+        .dete,
+        .dete1 {
+            display: flex;
+            height: 90vh;
+            margin: 20px;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            background-color: antiquewhite;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dete">
+        <h1>Person Detection with Flask</h1>
+        <img src="{{ url_for('video_feed1') }}" width="640" height="480" style="border:1px solid #000;">
+    </div>
+</body>
+
+</html>
